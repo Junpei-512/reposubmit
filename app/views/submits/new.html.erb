@@ -1,0 +1,14 @@
+<div class="main submits-new">
+  <div class="container">
+    <h1 class="form-heading">提出する</h1>
+    
+    <%= form_tag("/submits/create") do %>
+      <div class="form">
+        <div class="form-body">
+          <textarea name="content"></textarea>
+          <input type="submit" value="提出">
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

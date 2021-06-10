@@ -1,0 +1,9 @@
+<div class="main submits-index">
+  <div class="container">
+    <% @submits.each do |submit| %>
+      <div class="submits-index-item">
+        <%= link_to(submit.content, "/submits/#{submit.id}") %>
+      </div>
+    <% end %>
+  </div>
+</div>
