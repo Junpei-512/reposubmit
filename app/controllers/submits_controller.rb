@@ -8,13 +8,17 @@ class SubmitsController < ApplicationController
   end
 
   def new
+    @submit = Submit.new
   end
 
   def create
     @submit = Submit.new(content: params[:content])
-
-    @submit.save
-    redirect_to("/submits/index")
+    if @submit.save
+      flash[:notice] = "レポートを提出しました"
+      redirect_to("/submits/index")
+    else
+      render("submits/new")
+    end
   end
 
   def edit
@@ -24,15 +28,21 @@ class SubmitsController < ApplicationController
   def update
     @submit = Submit.find_by(id: params[:id])
     @submit.content = params[:content]
-    @submit.save
 
-    redirect_to("/submits/index")
+    if @submit.save
+      #保存できた場合
+      flash[:notice] = "レポートを編集しました"
+      redirect_to("/submits/index")
+    else
+      #保存できなかった場合
+      render("submits/edit")
+    end
   end
 
   def destroy
     @submit = Submit.find_by(id: params[:id])
     @submit.destroy
-
+    flash[:notice] = "レポートを削除しました"
     redirect_to("/submits/index")
   end
 end

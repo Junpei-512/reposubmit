@@ -5,7 +5,12 @@
     <%= form_tag("/submits/create") do %>
       <div class="form">
         <div class="form-body">
-          <textarea name="content"></textarea>
+          <% @submit.errors.full_messages.each do |message| %>
+            <div class="form-error">
+              <%= message %>
+            </div>
+          <% end %>
+          <textarea name="content"><%= @submit.content %></textarea>
           <input type="submit" value="提出">
         </div>
       </div>
